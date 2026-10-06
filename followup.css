@@ -1,0 +1,766 @@
+/* ==========================================================================
+   PLURON STUDIO - AI LEAD RESPONSE SYSTEM STYLESHEET
+   Page: Stop losing customers because nobody followed up
+   Brand Theme:
+     Main Background:   #e2e8f0 (Light Slate/Gray)
+     Structural Text:   #1a0a1f (Dark Purple/Plum)
+     Primary Accent:    #00f5ff (Electric Cyan)
+     Accent Hover:      #00e0ea
+     Dark Sections:     #1a0a1f (Brand Deep Purple)
+     Dark Card:         #25112c
+     Light Card:        #ffffff (Pure White Elevation)
+     Muted Light:       #4a3b52
+     Muted Dark:        #cbd5e1
+     Line/Borders:      rgba(26, 10, 31, 0.12)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS VARIABLES & DESIGN TOKENS
+   -------------------------------------------------------------------------- */
+:root {
+  --bg: #e2e8f0;
+  --ink: #1a0a1f;
+  --mute: #4a3b52;
+  --card: #ffffff;
+  --card-border: rgba(26, 10, 31, 0.12);
+  --line: rgba(26, 10, 31, 0.12);
+  --acc: #00f5ff;
+  --acc-hover: #00e0ea;
+  --accink: #1a0a1f;
+  --acc-glow: rgba(0, 245, 255, 0.35);
+  --dark: #1a0a1f;
+  --darkink: #ffffff;
+  --darkmute: #cbd5e1;
+  --darkcard: #25112c;
+  --darkline: rgba(0, 245, 255, 0.2);
+  --good: #0891b2;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 9999px;
+  --shadow-sm: 0 2px 8px rgba(26, 10, 31, 0.04);
+  --shadow-md: 0 8px 24px rgba(26, 10, 31, 0.07);
+  --shadow-lg: 0 16px 40px rgba(26, 10, 31, 0.1);
+  --shadow-acc: 0 6px 20px rgba(0, 245, 255, 0.35);
+  
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Dark mode overrides aligned with Pluron palette */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #120617;
+    --ink: #ffffff;
+    --mute: #cbd5e1;
+    --card: #1f0c26;
+    --card-border: rgba(0, 245, 255, 0.18);
+    --line: rgba(0, 245, 255, 0.18);
+    --acc: #00f5ff;
+    --acc-hover: #00e0ea;
+    --accink: #1a0a1f;
+    --dark: #0b020e;
+    --darkink: #ffffff;
+    --darkmute: #cbd5e1;
+    --darkcard: #190820;
+    --darkline: rgba(0, 245, 255, 0.25);
+    --good: #00f5ff;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #120617;
+  --ink: #ffffff;
+  --mute: #cbd5e1;
+  --card: #1f0c26;
+  --card-border: rgba(0, 245, 255, 0.18);
+  --line: rgba(0, 245, 255, 0.18);
+  --acc: #00f5ff;
+  --acc-hover: #00e0ea;
+  --accink: #1a0a1f;
+  --dark: #0b020e;
+  --darkink: #ffffff;
+  --darkmute: #cbd5e1;
+  --darkcard: #190820;
+  --darkline: rgba(0, 245, 255, 0.25);
+  --good: #00f5ff;
+}
+
+/* --------------------------------------------------------------------------
+   2. BASE RESET & TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  color: var(--ink);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  font-weight: 800;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 6.5vw, 4rem);
+  font-weight: 800;
+  margin-bottom: 0.6em;
+}
+
+h2 {
+  font-size: clamp(1.85rem, 4.5vw, 2.75rem);
+  font-weight: 800;
+  margin-bottom: 0.7em;
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.35em;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0 0 1.2em;
+}
+
+a {
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   3. LAYOUT & UTILITY CLASSES
+   -------------------------------------------------------------------------- */
+.w {
+  width: 100%;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+section {
+  padding: 80px 0;
+}
+
+.lead {
+  color: var(--mute);
+  max-width: 58ch;
+  font-size: 1.2rem;
+  line-height: 1.65;
+}
+
+/* --------------------------------------------------------------------------
+   4. BUTTONS & INTERACTIVE ELEMENTS
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--acc);
+  color: var(--accink);
+  font-weight: 800;
+  font-size: 1.05rem;
+  text-decoration: none;
+  padding: 16px 32px;
+  border-radius: 10px;
+  border: 2px solid var(--acc);
+  cursor: pointer;
+  box-shadow: var(--shadow-acc);
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: var(--acc-hover);
+  border-color: var(--acc-hover);
+  color: var(--accink);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(0, 245, 255, 0.45);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:focus-visible, a:focus-visible {
+  outline: 3px solid var(--acc);
+  outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   5. PLURON BRAND HEADER & LOGO
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--dark);
+  border-bottom: 1px solid var(--darkline);
+  padding: 0.9rem 0;
+  box-shadow: 0 4px 20px rgba(26, 10, 31, 0.3);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.brand-logo-img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  transition: transform 0.25s ease;
+}
+
+.brand-logo:hover .brand-logo-img {
+  transform: rotate(5deg) scale(1.05);
+}
+
+.brand-name {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+}
+
+.brand-sub {
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: var(--acc);
+}
+
+/* Fallback if logo is rendered in plain .w top bar */
+.w > .brand-logo,
+.brand-bar {
+  display: flex;
+  align-items: center;
+}
+
+/* --------------------------------------------------------------------------
+   6. HERO SECTION
+   -------------------------------------------------------------------------- */
+.hero {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 52px;
+  align-items: center;
+  padding-top: 56px;
+  padding-bottom: 32px;
+}
+
+.hero h1 {
+  margin-bottom: 0.55em;
+}
+
+.hero .lead {
+  margin-bottom: 2rem;
+}
+
+/* Chat simulation widget */
+.chat {
+  background-color: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-size: 1rem;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.chat::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--acc), rgba(0, 245, 255, 0.2));
+}
+
+.m {
+  max-width: 86%;
+  padding: 12px 18px;
+  border-radius: 16px;
+  line-height: 1.5;
+}
+
+.m small {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  opacity: 0.75;
+}
+
+.in {
+  background-color: #f1f5f9;
+  color: #1a0a1f;
+  border: 1px solid rgba(26, 10, 31, 0.08);
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+
+.out {
+  background: linear-gradient(135deg, #1a0a1f 0%, #25112c 100%);
+  color: #ffffff;
+  border: 1px solid rgba(0, 245, 255, 0.25);
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 4px 14px rgba(26, 10, 31, 0.15);
+}
+
+.out small {
+  color: var(--acc);
+  opacity: 1;
+}
+
+.note {
+  align-self: center;
+  color: var(--accink);
+  background-color: rgba(0, 245, 255, 0.15);
+  border: 1px solid rgba(0, 245, 255, 0.45);
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.note::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background-color: var(--acc);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--acc);
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.6; }
+}
+
+/* --------------------------------------------------------------------------
+   7. DEMO VIDEO SECTION
+   -------------------------------------------------------------------------- */
+#demo {
+  padding-top: 40px;
+}
+
+#demo h2 {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.vid {
+  max-width: 360px;
+  width: 100%;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #1a0a1f 0%, #25112c 100%);
+  color: #ffffff;
+  border: 2px solid var(--darkline);
+  border-radius: 28px;
+  padding: 10px;
+  overflow: hidden;
+  box-shadow: 0 20px 48px rgba(26, 10, 31, 0.22), 0 0 0 1px rgba(0, 245, 255, 0.25);
+  position: relative;
+}
+
+.vid > div {
+  border-radius: 20px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.vid strong {
+  font-size: 1.25rem;
+  color: #ffffff;
+}
+
+.vid span {
+  color: var(--darkmute);
+}
+
+.vid iframe, .vid video {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   8. PROBLEM SECTION (PLURON BRAND PURPLE THEME)
+   -------------------------------------------------------------------------- */
+.prob {
+  background-color: var(--dark);
+  color: var(--darkink);
+  border-top: 1px solid var(--darkline);
+  border-bottom: 1px solid var(--darkline);
+  position: relative;
+}
+
+.prob h2 {
+  color: #ffffff;
+}
+
+.prob .lead {
+  color: var(--darkmute);
+  font-size: 1.2rem;
+}
+
+.seq {
+  list-style: none;
+  padding: 0;
+  margin: 32px 0;
+  display: grid;
+  gap: 14px;
+  max-width: 560px;
+}
+
+.seq li {
+  padding: 10px 0 10px 20px;
+  border-left: 3px solid var(--acc);
+  font-size: 1.2rem;
+  color: #e2e8f0;
+  line-height: 1.5;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.seq li:hover {
+  transform: translateX(4px);
+  color: #ffffff;
+}
+
+.seq li:last-child {
+  font-weight: 700;
+  color: var(--acc);
+}
+
+/* --------------------------------------------------------------------------
+   9. HOW IT WORKS (STEPS)
+   -------------------------------------------------------------------------- */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  counter-reset: s;
+  margin-top: 16px;
+}
+
+.step {
+  background-color: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 26px 22px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.step:hover {
+  transform: translateY(-4px);
+  border-color: var(--acc);
+  box-shadow: 0 12px 28px rgba(0, 245, 255, 0.16);
+}
+
+.step::before {
+  counter-increment: s;
+  content: counter(s);
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: var(--acc);
+  color: var(--accink);
+  font-weight: 800;
+  font-size: 1.05rem;
+  margin-bottom: 18px;
+  box-shadow: 0 3px 10px rgba(0, 245, 255, 0.35);
+}
+
+.step h3 {
+  color: var(--ink);
+  margin-bottom: 0.4em;
+}
+
+.step p {
+  color: var(--mute);
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+/* --------------------------------------------------------------------------
+   10. TARGET AUDIENCE (WHO)
+   -------------------------------------------------------------------------- */
+.who {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 28px 0 0;
+}
+
+.who li {
+  background-color: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  font-weight: 600;
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.who li:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 245, 255, 0.6);
+}
+
+.who li::before {
+  content: "✓";
+  color: #0891b2;
+  font-weight: 800;
+  font-size: 1.15rem;
+  margin-right: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: rgba(0, 245, 255, 0.15);
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   11. FOUNDING CLIENT OFFER
+   -------------------------------------------------------------------------- */
+.offer {
+  background-color: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: 24px;
+  padding: 44px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 40px;
+  box-shadow: 0 0 0 2px rgba(0, 245, 255, 0.3), var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.offer::before {
+  content: "SPECIAL INVITATION";
+  position: absolute;
+  top: 18px;
+  right: -32px;
+  transform: rotate(45deg);
+  background-color: var(--acc);
+  color: var(--accink);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 4px 38px;
+  box-shadow: 0 2px 8px rgba(0, 245, 255, 0.3);
+}
+
+.price {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+  line-height: 1.1;
+  color: var(--ink);
+  margin-top: 6px;
+}
+
+.was {
+  color: #64748b;
+  text-decoration: line-through;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.offer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.offer li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  font-weight: 600;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+}
+
+.offer li:last-child {
+  border-bottom: none;
+}
+
+.offer li::before {
+  content: "✓";
+  color: #0891b2;
+  font-weight: 800;
+  font-size: 1.1rem;
+  margin-right: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: rgba(0, 245, 255, 0.15);
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   12. CALL TO ACTION (CTA)
+   -------------------------------------------------------------------------- */
+.cta {
+  text-align: center;
+  padding-bottom: 96px;
+}
+
+.cta .lead {
+  margin: 0 auto 32px;
+  max-width: 62ch;
+}
+
+.cta .btn {
+  font-size: 1.15rem;
+  padding: 18px 36px;
+}
+
+.cta p a {
+  color: var(--ink);
+  font-weight: 700;
+  border-bottom: 2px solid var(--acc);
+  padding-bottom: 1px;
+}
+
+.cta p a:hover {
+  color: var(--acc);
+}
+
+/* --------------------------------------------------------------------------
+   13. FOOTER
+   -------------------------------------------------------------------------- */
+footer {
+  background-color: var(--dark);
+  color: var(--darkmute);
+  padding: 36px 0 44px;
+  font-size: 0.95rem;
+  text-align: center;
+  border-top: 1px solid var(--darkline);
+}
+
+/* --------------------------------------------------------------------------
+   14. RESPONSIVE DESIGN
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .who {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .offer {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 32px;
+  }
+  
+  section {
+    padding: 56px 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .steps {
+    grid-template-columns: 1fr;
+  }
+  
+  .who {
+    grid-template-columns: 1fr;
+  }
+  
+  .offer {
+    padding: 24px;
+  }
+  
+  .offer::before {
+    display: none;
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 16px 20px;
+  }
+}
